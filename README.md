@@ -1,6 +1,8 @@
 WDI Instructor Code Challenge - AngularFire
 ==============
 
+[AngularFire App Hosted on Firebase](https://omdb.firebaseapp.com/)
+
 Advantages and challenges of students learning AngularJS
 --------------
 
