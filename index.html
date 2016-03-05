@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Fun</title>
+  <!-- AngularJS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <!-- Firebase -->
+  <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+  <!-- AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <div ng-controller="Ctrl">
+    <input type="text" ng-model="searchTerm" placeholder="Search terms">
+    <button href="" type="button" ng-click="getMovieList()">Search</button>
+    <button type="button" ng-click="getFavorites()">Favorites</button>
+    <!-- Display list of movies retrieved from OMDB API -->
+    <div ng-show="show === 'Movie List'" ng-repeat="movie in movieList">
+      <li><a href="" ng-click="getMovieDetails(movie.Title)">{{ movie.Title }}</a></li>
+    </div>
+    <!-- Display movie details retrieved from OMDB API -->
+    <button ng-show="show === 'Movie Details'" type="button" ng-click="saveFavorites()">
+      Save as Favorite</button>
+    <div ng-show="show === 'Movie Details'" ng-repeat="(key, value) in movieDetails">
+      <li>{{ key }} : {{ value }}</li>
+    </div>
+    <!-- Display list of favorite movies retrieved from Firebase -->
+    <div ng-show="show === 'Favorites'" ng-repeat="movie in favoriteMovies">
+      <li>{{ movie.title }}</li>
+    </div>
+  </div>
+</body>
+</html>
