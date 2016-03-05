@@ -11,7 +11,8 @@ app.controller('Ctrl', function($scope, $firebaseArray, $http) {
 
   $scope.getMovieList = function() {
     // Make a GET request to the OMDB API to search for movies and then display the results
-  	$http.get('https://www.omdbapi.com/?s=' + $scope.searchTerm).then(function(response) {
+    var encodedSearchTerm = encodeURIComponent($scope.searchTerm);
+  	$http.get('https://www.omdbapi.com/?s=' + encodedSearchTerm).then(function(response) {
         $scope.movieList = response.data.Search;
         $scope.show = 'Movie List';
         $scope.searchTerm = "";
@@ -20,7 +21,8 @@ app.controller('Ctrl', function($scope, $firebaseArray, $http) {
 
   $scope.getMovieDetails = function(movieTitle) {
     // Make a GET request to the OMDB API to retrieve movie details and then display the results 
-  	$http.get('https://www.omdbapi.com/?t=' + movieTitle).then(function(response) {
+    var encodedMovieTitle = encodeURIComponent(movieTitle);
+  	$http.get('https://www.omdbapi.com/?t=' + encodedMovieTitle).then(function(response) {
         $scope.movieDetails = response.data;
         $scope.show = 'Movie Details';
     });
